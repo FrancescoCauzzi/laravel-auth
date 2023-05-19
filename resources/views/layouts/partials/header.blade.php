@@ -9,13 +9,17 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
+            <ul class="navbar-nav me-auto d-flex gap-3">
+                <li>
+                    <h1 class="__bordered-text fw-bold" style="">Boolfolio</h1>
+                </li>
+                <li class="nav-item d-flex align-items-center">
                     <a class="nav-link text-white fw-bold" href="{{url('/') }}">{{ __('Home') }}</a>
                 </li>
             </ul>
+
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">

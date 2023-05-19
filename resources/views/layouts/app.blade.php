@@ -25,7 +25,7 @@
             @include('layouts/partials/header')
         </header>
 
-        <main class="py-5">
+        <main class="">
             @yield('content')
         </main>
         <footer>

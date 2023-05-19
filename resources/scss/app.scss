@@ -6,10 +6,28 @@
     box-sizing: border-box;
 }
 
+// header {
+//     position: fixed !important;
+//     top: 0;
+//     width: 100%;
+// }
 header {
-    position: fixed !important;
-    top: 0;
-    width: 100%;
+    .__bordered-text {
+        color: #6ed663;
+
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: #073a7e;
+        text-stroke-width: 1px;
+        text-stroke-color: #073a7e;
+    }
+}
+main {
+    background-color: #1c2d3e;
+    height: 100vh;
+    padding-top: 100px;
+    .__jumbo {
+        margin-top: 0px;
+    }
 }
 
 footer {
