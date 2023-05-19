@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="jumbotron p-5 bg-light rounded-3 __jumbo">
-    <div class="container d-flex">
+<div class="container p-5 bg-light rounded-3 __jumbo">
+    <div class=" d-flex">
         <div class="__welcome">
 
             <div class="logo_boolean">
