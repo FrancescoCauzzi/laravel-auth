@@ -27,12 +27,12 @@ class ProjectSeeder extends Seeder
         $clientIds = Client::pluck('id')->toArray();
         for ($i = 0; $i < 10; $i++) {
             Project::create([
-                'name' => $faker->sentence(),
-                'slug' => Str::slug('name', '-'),
+                'name' => $name = $faker->sentence(3), // Store the generated name in a variable
+                'slug' => Str::slug($name, '-'), // Use the stored name variable for slug generation
                 'description' => $faker->text(),
                 'start_date' => now(),
                 'end_date' => $faker->dateTimeBetween('now', '+3 years'),
-                'status' => array_rand(['pending', 'in progress', 'completed']),
+                'status' => ['pending', 'in progress', 'completed'][array_rand(['pending', 'in progress', 'completed'])],
                 'budget' => $faker->randomFloat(2, 1, 9999999999999.99),
                 'manager_id' => $userIds[array_rand($userIds)], // Random user ID
                 'client_id' => $clientIds[array_rand($clientIds)], // Random client ID
