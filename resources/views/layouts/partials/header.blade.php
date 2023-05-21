@@ -21,7 +21,7 @@
 
                 @if (auth()->check())
                 <li class="nav-item d-flex align-items-center">
-                    <a href="{{route('admin.dashboard.home')}}" class="text-white fw-bold">Admin Dashboard</a>
+                    <a href="{{route('admin.dashboard.home')}}" class="text-white fw-bold">Admin</a>
                 </li>
                 @endif
             </ul>
