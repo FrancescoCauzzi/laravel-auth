@@ -1,5 +1,5 @@
 <div class="container-fluid px-5 bg-black __footer">
-    <div class="d-flex flex-wrap justify-content-between align-items-center py-3  border-top">
+    <div class="d-flex flex-wrap justify-content-between align-items-center py-3 ">
       <p class="col-md-4 mb-0 text-white fw-bold">© <?php
         // Get the current timestamp
         $timestamp = time();
@@ -20,7 +20,7 @@
       </a>
 
       <ul class="nav col-md-4 justify-content-end">
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-white fw-bold">Home</a></li>
+        <li class="nav-item"><a href="{{url('/')}}" class="nav-link px-2 text-white fw-bold">Home</a></li>
         <li class="nav-item"><a href="#" class="nav-link px-2 text-white fw-bold">Features</a></li>
         <li class="nav-item"><a href="#" class="nav-link px-2 text-white fw-bold">Pricing</a></li>
         <li class="nav-item"><a href="#" class="nav-link px-2 text-white fw-bold">FAQs</a></li>

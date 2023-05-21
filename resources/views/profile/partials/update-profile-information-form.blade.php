@@ -1,19 +1,19 @@
-<section>
-    <header>
-        <h2 class="text-secondary">
+<section class="mb-3">
+    <div>
+        <h2 class="">
             {{ __('Profile Information') }}
         </h2>
 
-        <p class="mt-1 text-muted">
+        <p class="mt-1 ">
             {{ __("Update your account's profile information and email address.") }}
         </p>
-    </header>
+    </div>
 
     <form id="send-verification" method="post" action="{{ route('verification.send') }}">
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('admin.profile.update') }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
 

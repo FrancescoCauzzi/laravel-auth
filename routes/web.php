@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,12 +24,29 @@ Route::get('/', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/admin', [DashboardController::class, 'home'])->middleware(['auth', 'verified']);
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// every admin route must have the prefix 'admin/' in the URL
+// the route name must start with 'admin. '
+/*
+Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
+    Route::resource('projects',  ProjectController::class)->parameters(['projects' => 'project:slug']);
+    Route::get('/', [DashboardController::class, 'home'])->name('dashboard.home');
+    // edit, update, delete
+    Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+*/
+Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
+    //route to projects
+    Route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
+    // route to dashboard
+    Route::get('/', [DashboardController::class, 'home'])->name('dashboard.home');
+    // edit, update, delete
+    Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
 
 require __DIR__ . '/auth.php';

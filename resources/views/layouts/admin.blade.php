@@ -23,19 +23,18 @@
 </head>
 
 <body>
-    <div class="__box" id="app">
-        <header class="">
+    <div id="app">
+        <header>
             @include('layouts/partials/header')
         </header>
 
-        <main class="">
+        <main>
             @yield('content')
         </main>
-        <footer class="">
+        <footer >
             @include('layouts/partials/footer')
         </footer>
     </div>
 </body>
 
 </html>
-

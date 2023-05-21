@@ -1,5 +1,5 @@
 <section class="space-y-6">
-    <header>
+    <div>
         <h2 class="text-lg font-medium text-gray-900">
             {{ __('Delete Account') }}
         </h2>
@@ -7,7 +7,7 @@
         <p class="mt-1 text-sm text-gray-600">
             {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.') }}
         </p>
-    </header>
+    </div>
 
     <!-- Modal trigger button -->
     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-account">
@@ -34,7 +34,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
 
-                    <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
+                    <form method="post" action="{{ route('admin.profile.destroy') }}" class="p-6">
                         @csrf
                         @method('delete')
 

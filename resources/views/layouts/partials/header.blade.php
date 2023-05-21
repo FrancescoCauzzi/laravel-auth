@@ -12,12 +12,18 @@
         <div class="collapse navbar-collapse " id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto d-flex gap-3">
-                <li>
+                <li class="nav-item d-flex align-items-center">
                     <h1 class="__bordered-text fw-bold" style="">Boolfolio</h1>
                 </li>
                 <li class="nav-item d-flex align-items-center">
                     <a class="nav-link text-white fw-bold" href="{{url('/') }}">{{ __('Home') }}</a>
                 </li>
+
+                @if (auth()->check())
+                <li class="nav-item d-flex align-items-center">
+                    <a href="{{route('admin.dashboard.home')}}" class="text-white fw-bold">Admin Dashboard</a>
+                </li>
+                @endif
             </ul>
 
 
@@ -40,8 +46,8 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ url('dashboard') }}">{{__('Dashboard')}}</a>
-                        <a class="dropdown-item" href="{{ url('profile') }}">{{__('Profile')}}</a>
+                        <a class="dropdown-item" href="{{ route('admin.dashboard.home') }}">{{__('Dashboard')}}</a>
+                        <a class="dropdown-item" href="{{ route('admin.profile.edit')}}">{{__('Profile')}}</a>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
