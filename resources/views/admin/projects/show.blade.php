@@ -36,7 +36,7 @@
     <div class="__btns-ctn d-flex gap-5">
 
         <div class="__edit-btn">
-            <button class="btn btn-primary"><a href="{{route('admin.projects.edit', ['project' => $project->slug])}}">Edit this project</a></button>
+            <button class="btn btn-primary"><a class="fw-bold" href="{{route('admin.projects.edit', ['project' => $project->slug])}}">Edit this project</a></button>
         </div>
         <form class="text-center mb-5" action="{{ route('admin.projects.destroy', $project->slug) }}" method="POST">
             @csrf
