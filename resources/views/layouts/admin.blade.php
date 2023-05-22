@@ -1,3 +1,12 @@
+@php
+
+$routeName = Route::currentRouteName();
+function routeNameContains($string) {
+    return str_contains( Route::currentRouteName(), $string);
+}
+
+@endphp
+
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -27,7 +36,6 @@
         <header>
             @include('layouts/partials/header')
         </header>
-
         <main>
             @yield('content')
         </main>
