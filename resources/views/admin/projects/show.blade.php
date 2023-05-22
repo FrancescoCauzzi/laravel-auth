@@ -19,8 +19,11 @@
         <p class="fw-bold">
             <span >start: </span>
             <span>{{date("F j, Y", strtotime($project->start_date))}}</span><span>, until: </span><span>{{date("F j, Y", strtotime($project->end_date))}}</span>
-
         </p>
+    </div>
+    <div class="__proj__status">
+        <h4>Status of the project:</h4>
+        <span class="fw-bold">{{ucwords($project->status)}}</span>
     </div>
     <div class="__proj-manager">
     <h4>Manager:</h4>
