@@ -81,7 +81,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
@@ -95,16 +95,14 @@ class ProjectController extends Controller
     {
         $this->validation($request);
 
-        $formData = $request->all();
 
-        // Add the dollar sign ('$') to the price and pad with two decimal zeros
-        //$formData['budget'] = '$' . number_format($formData['budget'], 2, '.', '');
-        $project->slug = Str::slug($formData['name']); // Assign the slug value based on the 'name' attribute
+        $formData = $request->all();
         $project->update($formData);
+        $project->slug = Str::slug($formData['name']); // Assign the slug value based on the 'name' attribute
 
         $project->save();
 
-        return redirect()->route('admin.projects.show', $project->id);
+        return redirect()->route('admin.projects.show', $project->slug);
     }
 
     /**

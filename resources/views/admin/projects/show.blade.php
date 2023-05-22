@@ -30,6 +30,9 @@
         <h5>Client</h5>
         <span class="fw-bold">{{ $project->client->name }}</span>
     </div>
+    <div class="__edit-btn">
+        <button class="btn btn-primary"><a href="{{route('admin.projects.edit', ['project' => $project->slug])}}">Edit this project</a></button>
+    </div>
 
 
 </div>
