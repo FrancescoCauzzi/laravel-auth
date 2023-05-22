@@ -8,7 +8,7 @@
     <table class="text-white table">
         <thead>
             <th>Name</th>
-            <th>Descrizione</th>
+            <th>Description</th>
             <th>Slug</th>
             <th>Commands</th>
         </thead>
@@ -25,6 +25,9 @@
             @endforeach
         </tbody>
     </table>
+    <div class="__btns-ctn">
+        <button class="btn btn-primary"><a href="{{route('admin.projects.create')}}">Add a new project</a></button>
+    </div>
 </div>
 
 @endsection

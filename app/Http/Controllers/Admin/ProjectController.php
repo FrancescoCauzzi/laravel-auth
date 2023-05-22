@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+// Str support module import
+use Illuminate\Support\Str;
+
 
 class ProjectController extends Controller
 {
@@ -25,9 +30,9 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Project $project)
     {
-        return 'sei nella create';
+        return view('admin.projects.create', compact('project'));;
     }
 
     /**
@@ -36,9 +41,25 @@ class ProjectController extends Controller
      * @param  \App\Http\Requests\StoreProjectRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProjectRequest $request)
+    public function store(Request $request)
     {
-        //
+        $this->validation($request);
+        // Perform an authorization check
+        $formData = $request->all();
+        //$formData['budget'] = '$' . number_format($formData['budget'], 2);
+
+
+        $newProject = new Project();
+        $newProject->fill($formData);
+        $newProject->slug = Str::slug($formData['name']); // Assign the slug value based on the 'name' attribute
+
+        // random variables temporarily assigned to manager_id and client_id
+        $newProject->manager_id = rand(1, 20);
+        $newProject->client_id = rand(1, 20);
+
+        $newProject->save();
+
+        return redirect()->route('admin.projects.show', $newProject->slug);
     }
 
     /**
@@ -70,9 +91,20 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProjectRequest $request, Project $project)
+    public function update(Request $request, Project $project)
     {
-        //
+        $this->validation($request);
+
+        $formData = $request->all();
+
+        // Add the dollar sign ('$') to the price and pad with two decimal zeros
+        //$formData['budget'] = '$' . number_format($formData['budget'], 2, '.', '');
+        $project->slug = Str::slug($formData['name']); // Assign the slug value based on the 'name' attribute
+        $project->update($formData);
+
+        $project->save();
+
+        return redirect()->route('admin.projects.show', $project->id);
     }
 
     /**
@@ -84,5 +116,37 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         //
+    }
+    // custom method
+    private function validation($request)
+    {
+        // dobbiamo prendere solo i parametri del form, utilizziamo quindi il metodo all()
+        $formData = $request->all();
+
+
+        $validator = Validator::make($formData, [
+
+            'name' => 'required|max:50|min:6',
+            'description' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'status' => 'required|max:20',
+            'budget' => 'required',
+
+        ], [
+            // dobbiamo inserire qui un insieme di messaggi da comunicare all'utente per ogni errore che vogliamo modificare
+            'name.required' => 'The project name must be inserted',
+            'name.max' => 'The project name must be longer than 50 characters',
+            'name.mi' => 'The project name must be at least 6 characters',
+            'description.required' => "The project description must be inserted",
+            'start_date.required' => "The start date must be inserted",
+            'end_date.required' => "The end date must be inserted",
+            'sstatus.required' => "The status of the project must be inserted",
+            'budget.required' => "The budget must be inserted",
+
+        ])->validate();
+
+        // we need to return a value because we are inside a function
+        return $validator;
     }
 }
